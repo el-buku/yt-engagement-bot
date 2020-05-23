@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+{% block heading %}
+Dashboard
+{% endblock heading %}
+
+{% block body %}
+
+
+    <div class="row">
+
+        <div class="col-xl-3 col-md-6">
+            <div class="shadow-sm card bg-light mb-4">
+                <div class="card-body">Add channels to watchlist</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-black stretched-link" href="/channelscanner">View watchlist</a>
+                    <div class="small text-black"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="shadow-sm card bg-light mb-4">
+                <div class="card-body">Schedule random comments</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small stretched-link text-black" href="/commentsbot">View comment tasks</a>
+                    <div class="small text-black"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="shadow-sm card bg-light mb-4">
+                <div class="card-body">Comment lists</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-black stretched-link" href="/commentlists">View lists</a>
+                    <div class="small text-black"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="shadow-sm card bg-light mb-4">
+                <div class="card-body">Statistics</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-black stretched-link" href="/statistics">View Details</a>
+                    <div class="small text-black"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+{% endblock %}

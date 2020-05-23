@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block heading %}
+Accounts <a href="/accounts/newaccount" class="btn btn-dark float-right"><i class="fas fa-user-plus"></i>   Add account</a>
+{%endblock%}
+{% block body%}
+<div class="card-columns">
+    {% for acc in accountslist %}
+
+        <div class="card shadow-sm border-light rounded-sm bg-light">
+        <div class="card-body ">
+            <p class="card-text">{{acc}}<a href="accounts/delete/{{acc}}" class="float-right"><i class="fas fa-user-slash"></i>  Remove account</a></p>
+            
+        </div>
+        
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

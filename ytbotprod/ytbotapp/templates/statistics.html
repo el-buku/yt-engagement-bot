@@ -1,0 +1,136 @@
+{%extends 'base.html'%}
+{%block heading%}
+Statistics
+{%endblock%}
+{%block body%}
+    <style>
+    .paginate_button{
+        margin-right: 10px;
+    }
+    </style>
+<div class="columns mb-2">
+<div class="row">
+{#    <div class="card shadow-sm border rounded-sm bg-light">#}
+{#        <div class="card-header">#}
+{#            Comments added#}
+{#        </div>#}
+{#        <div class="card-body">#}
+{#        {{#}
+{#            commnum#}
+{#         }}#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="card shadow-sm border rounded-sm bg-light">#}
+{#        <div class="card-header">#}
+{#            Average number of comments per day#}
+{#        </div>#}
+{#        <div class="card-body">#}
+{#        {{#}
+{#            avg#}
+{#         }}#}
+{#        </div>#}
+{#    </div>#}
+    <div class="col">
+    <div class="card shadow-sm border rounded-sm bg-light">
+        <div class="card-header">
+            New videos detected
+        </div>
+        <div class="card-body">
+        {{
+            scans
+         }}
+        </div>
+    </div></div>
+    <div class="col">
+    <div class="card shadow-sm border rounded-sm bg-light">
+        <div class="card-header">
+            Comments scheduled for today
+        </div>
+        <div class="card-body">
+        {{
+            commsched
+         }}
+        </div>
+    </div></div>
+    <div class="col">
+    <div class="card shadow-sm border rounded-sm bg-light">
+        <div class="card-header">
+            Comments posted today
+        </div>
+        <div class="card-body">
+        {{
+            commposted
+         }}
+        </div>
+    </div></div>
+    <div class="col">
+    <div class="card shadow-sm border rounded-sm bg-light">
+        <div class="card-header">
+            Channels tracked
+        </div>
+        <div class="card-body">
+        {{
+            scansno
+         }}
+        </div>
+    </div></div>
+
+    <!-- <div class="card shadow-sm border rounded-sm bg-light">
+        <div class="card-header">
+            Average number of new videos per day
+        </div>
+        <div class="card-body">
+
+           scans/delta
+         
+        </div>
+    </div> -->
+
+</div></div>
+
+<style>
+#comms_filter{
+    display: none;
+}
+</style>
+<script>$(document).ready(function() {
+    $('#comms').DataTable();
+} );
+
+</script>
+<div class="card mb-4">
+    <div class="table-responsive">
+        <div class="card-header">
+            <h3>Comment history</h3></div>
+            <div class="card-body">
+        
+<table class="table" id="comms" >
+    <thead class="thead-dark">
+        <tr>
+            <th class="sorting_asc">Video</th>
+            <th>Channel</th>
+            <th>Comment</th>
+            <th>Account</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th><a href="/deletecommlog"></a>Delete log</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for comment in commhistory|reverse %}
+        <tr>
+            <td><a href="https://www.youtube.com/watch?v={{comment}}">{{commhistory[comment][0]}}</a></td>
+            <td>{{commhistory[comment][1]}}</td>
+            <td>{{commhistory[comment][2]|truncate(200)}}</td>
+            <td>{{commhistory[comment][3]}}</td>
+            <td>{{commhistory[comment][4][:-10]}}</td>
+            <td>{{commhistory[comment][5]}}</td>
+            <td><a href="/deletefromlog/{{comment}}"><i class="fas fa-trash"></i> Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div></div></div>
+{#<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>#}
+
+{%endblock%}

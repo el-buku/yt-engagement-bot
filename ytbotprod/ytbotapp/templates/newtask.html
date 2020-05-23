@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block heading %}
+Add Comment Task
+{% endblock %}
+
+{% block body %}
+
+<div class="card shadow-sm border rounded-sm bg-light" >
+    <div class="card-body">
+        <form action="/commentsbot/newtask" method="POST"> 
+            {{ form.csrf_token }}
+            <div class="form-group"><label class="small mb-1" >{{form.channelid.label}}</label>{{form.channelid(class="form-control", placeholder="Channel ID to comment on. Must be 24 characters long and a valid YouTube channel.")}}</div>            <div>
+            <div class="form-group"><label class="small mb-1" >{{form.commentlist.label}}</label>{{form.commentlist(class="form-control", placeholder="Commentlist to use")}}<div>
+            <div class="form-group"><label class="small mb-1">{{form.numberofcomments.label}}</label> {{form.numberofcomments(class="form-control", placeholder="Number of comments. Max 35")}}</div>
+            <div class="form-group"><label class="small mb-1">{{form.account.label}}</label>{{form.account(class="form-control", placeholder="Gooogle Account to use when commenting")}}</div>
+
+                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">{{form.submit(class="btn btn-block btn-dark")}}</div>
+        </form>
+    </div>
+</div>
+{%endblock%}

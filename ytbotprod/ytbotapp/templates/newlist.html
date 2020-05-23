@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block heading %}
+Add a new comment list
+{% endblock %}
+
+{% block body %}
+<div class="card shadow-sm border rounded-sm bg-light" >
+                
+    <div class="card-body">
+                
+                <form class="form-inline" action="/commentlists/newlist" method="POST"> 
+                    {{ form.csrf_token }}
+                    <!-- <label class="small mb-1" > {{form.listname.label}}</label> -->
+                    <div class="input-group">{{form.listname(class="form-control py-4", placeholder="New list name.")}}
+                       <div class="input-group-append">{{form.submit(class="btn btn-dark")}}
+                    </div>
+                </div>
+                </form>
+    </div>
+</div>
+<hr>
+
+<div id="accordion" style="margin-top: 10px;">
+    {% for key in commentlists|reverse %}
+  <div class="card border shadow-sm" style="margin-top: 5px;">  
+    
+    <div class="card-header" id="heading{{key}}">
+        <div class="d-flex align-items-center">
+          <h2 class="mr-auto">
+            <a class="btn btn-link" data-toggle="collapse" data-target="#collapse{{key}}" aria-expanded="true" aria-controls="collapse{{key}}">
+                {{key}}
+              </a>
+          </h2>
+          <div class="btn-group" role="group">
+            <a href="/commentlists/editlist/{{key}}" class="btn btn-dark rounded-sm">Edit</a>
+            <a href="/delete/list/{{key}}" class="btn btn-danger rounded-sm" style="margin-left: 1em">Delete</a>
+          </div>
+        </div>
+      </div>
+
+    <div id="collapse{{key}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        {%for comment in commentlists[key][1:]|reverse%}
+        <p>{{comment}}</p><hr>{% endfor %}
+        <p>{{commentlists[key][0]}}</p>
+    </div>
+    </div>
+  </div>{% endfor %}
+
+    </div>
+
+
+{% endblock %}

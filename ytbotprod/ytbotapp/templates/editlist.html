@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block heading %}
+Edit list 
+<div class="btn-group float-right" role="group">
+    <a href="{{listname}}/newcomm" class="btn btn-dark rounded-sm">New comment</a>
+    <a href="/commentlists" class="btn btn-dark rounded-sm" style="margin-left: 1em">Back to lists</a>
+  </div>
+{% endblock %}
+
+{% block body %}
+
+<div class="card">
+    <div class="card-header">
+        <h3>{{listname}}</h3>
+    </div>
+    <div class="card-body">
+{% for comm in commlist[1:]|reverse %}
+<p>{{comm}}<a class="float-right" href="/delete/{{listname}}/{{commlist.index(comm)}}">Delete</a></p>
+    <hr>
+{% endfor %}
+<p>{{commlist[0]}}</p><span><a class="float-right"href="/delete/{{listname}}/{{comm}}">Delete</a></span>
+</div>
+</div>
+
+{% endblock %}

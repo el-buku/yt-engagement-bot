@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{%block heading%}
+Comments Bot
+<a href="commentsbot/newtask" class="btn btn-dark rounded-sm float-right" style="margin-left: 1em">New task</a>
+
+{%endblock%}
+{% block body %}
+
+<div class="container">
+<div class="card-columns" style="margin-top: 25px;">
+
+{%for task in tasksdict|reverse%}
+<div class="card shadow-sm border rounded-sm bg-light" >
+    <!-- <header class="card-header h3">
+        {{task}} task:
+    </header> -->
+    <div class="card-header">
+        {% if tasksdict[task][5]%}
+        Executing task {{tasksdict[task][5]}}
+        {%else%}
+        Task not scheduled
+        {%endif%}
+    </div>
+    <div class="card-body">
+        Comment on {{tasksdict[task][2]}} videos from channel: <a href="https://www.youtube.com/channel/{{tasksdict[task][0]}}">{{tasksdict[task][4]}}</a>, using {{tasksdict[task][1]}} list and {{tasksdict[task][3]}} account</div>
+    <div class="card-footer">
+        <div class="row">
+
+          
+        <a href="commentsbot/executetask/{{task}}" style="line-height:100%" class="col card-footer-item btn mr-3 btn-dark rounded-sm">Run now</a>
+        
+            <a style="line-height:180%" class="col card-footer-item btn mr-3 btn-success rounded-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span >Schedule</span>
+            </a>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/scheduletask/day/{{task}}">Every day</a>
+              <a class="dropdown-item" href="/scheduletask/3days/{{task}}">Every 3 days</a>
+              <a class="dropdown-item" href="/scheduletask/week/{{task}}">Every week</a>
+           
+          </div>        <a style="line-height:100%" href="commentsbot/deletetask/{{task}}" class="col card-footer-item btn mr-3 btn-danger rounded-sm">Delete task</a>
+    </div>
+</div>
+</div>
+{%endfor%}</div>
+</div>
+
+{%endblock%}

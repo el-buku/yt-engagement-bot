@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        {%if title%}
+        <title>
+            YT Bot - {{title}}
+        </title>
+        {% else %}
+        <title>YT Bot</title>
+        {% endif %}
+        <link href="{{url_for('static', filename='styles.css')}}" rel="stylesheet" />
+
+        <link href="{{url_for('static', filename='bootstrap-theme.min.css')}}" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+          <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+          <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+
+{#          <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />#}
+    <style>
+@media screen and (max-width: 750px) {
+                .nomob{
+                    display: none;
+                }
+            }
+ 
+body{-webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+ background-color: #fefefe;
+background-image: url("data:image/svg+xml,%3Csvg width='32' height='26' viewBox='0 0 32 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 0v3.994C14 7.864 10.858 11 7 11c-3.866 0-7-3.138-7-7.006V0h2v4.005C2 6.765 4.24 9 7 9c2.756 0 5-2.236 5-4.995V0h2zm0 26v-5.994C14 16.138 10.866 13 7 13c-3.858 0-7 3.137-7 7.006V26h2v-6.005C2 17.235 4.244 15 7 15c2.76 0 5 2.236 5 4.995V26h2zm2-18.994C16 3.136 19.142 0 23 0c3.866 0 7 3.138 7 7.006v9.988C30 20.864 26.858 24 23 24c-3.866 0-7-3.138-7-7.006V7.006zm2-.01C18 4.235 20.244 2 23 2c2.76 0 5 2.236 5 4.995v10.01C28 19.765 25.756 22 23 22c-2.76 0-5-2.236-5-4.995V6.995z' fill='%23e0e0e0' fill-opacity='0.23' fill-rule='evenodd'/%3E%3C/svg%3E");}
+
+        </style>
+
+    </head>
+    <body class="sb-nav-fixed container-bg">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="/index">Engagement Bot</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
+            ><!-- Navbar Search-->
+            <!-- <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form> -->
+            <!-- Navbar-->
+            <ul class="navbar-nav ml-auto">
+                <div class="nav-item nomob">
+                     <a class="nav-link" href="/logout" role="button">Log out</a>
+                <div>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Home</div>
+                            <a class="nav-link" href="/index"><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard</a>
+                            <a class="nav-link" href="/statistics"><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Statistics</a>
+                            
+                            <div class="sb-sidenav-menu-heading">Bots</div>
+                            <a class="nav-link" href="/channelscanner"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-eye"></i></div>
+                                Channel Scanner</a
+                            ><a class="nav-link" href="/commentsbot"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-random"></i></div>
+                                Random Comments</a>
+                            <div class="sb-sidenav-menu-heading">Comment Lists</div>
+                            <a class="nav-link collapsed" href="/commentlists/newlist">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                New List
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-plus"></i></div
+                            ></a>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Lists
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <!-- <a class="nav-link" href="/commentlists">View lists <div class="sb-sidenav-collapse-arrow"><i class="fas fa-list-ul"></i></div></a> -->
+
+                                        {%for list in data%}
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapse{{list}}" aria-expanded="false" aria-controls="pagesCollapseAuth"
+                                        >{{list}}
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                                            ></a>
+                                    <div class="collapse" id="pagesCollapse{{list}}" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/commentlists/editlist/{{list}}/newcomm">Add Comment</a><a class="nav-link" href="/commentlists/editlist/{{list}}">Edit List</a><a class="nav-link" href="/delete/list/{{list}}">Delete List</a></nav>
+                                    </div>
+                                        {%endfor%}
+
+
+                                    
+                                </nav>
+                            </div>
+
+
+                                <div class="sb-sidenav-menu-heading">Accounts</div>
+                                <a class="nav-link collapsed" href="/accounts/newaccount">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                    Comment Accounts
+                                </a>
+                                <a class="nav-link collapsed mobonly" href="/logout">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-user-minus"></i></div>
+                                    Log out
+                                </a>
+                                <!-- <a class="nav-link collapsed" href="/accounts">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                                   View Accounts
+                                    <div class="sb-sidenav-collapse-arrow"></div>
+                                </a> -->
+                        </div>
+                    </div>
+                    <!-- <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        Start Bootstrap
+                    </div> -->
+                </nav>
+            </div>
+            
+            <div id="layoutSidenav_content">
+                <div class="" >
+                <div class="container-fluid">
+                <main>
+                {% with messages=get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message  in messages %}
+                  <div class="alert alert-{{category}}" role="alert" style="margin-top: 20px;">
+                
+                      {{message}}
+                    
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+                {% endwith %}
+                  
+                    <h2 class="mt-4">{%block heading%}{%endblock%}</h2><hr>
+
+                    <!-- <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">
+                   
+                    {%- for breadcrumb in breadcrumbs -%}
+                        <a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a></li>
+                        {{ '/' if not loop.last }}
+                    {%- endfor -%}
+                </ol> -->
+                        
+                
+                {%block body%}{%endblock%}</div></main></div></div>
+
+        </div>
+
+        </body>
+</html>

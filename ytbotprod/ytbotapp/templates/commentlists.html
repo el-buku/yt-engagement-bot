@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+Comment Lists
+{% endblock %}
+
+{% block heading %}
+Comment Lists <a href="/commentlists/newlist" class="btn btn-dark float-right">New list</a>
+{% endblock %}
+{% block body %}
+
+
+
+<div id="accordion" style="margin-top: 10px;">
+    {% for key in commentlists|reverse %}
+  <div class="card shadow-sm" style="margin-top: 5px;">  
+    
+    <div class="card-header" id="heading{{key}}">
+        <div class="d-flex align-items-center">
+          <h2 class="mr-auto">
+            <a class="btn btn-link" data-toggle="collapse" data-target="#collapse{{key}}" aria-controls="collapse{{key}}">
+                {{key}}
+              </a>
+              
+          </h2>
+          <div class="btn-group" role="group">
+            <a href="/commentlists/editlist/{{key}}/newcomm" class="btn btn-dark rounded-sm">New comment</a>
+
+            <a href="/commentlists/editlist/{{key}}" class="btn btn-dark rounded-sm" style="margin-left: 1em">Edit</a>
+            <a href="/delete/list/{{key}}" class="btn btn-dark rounded-sm" style="margin-left: 1em">Delete</a>
+          </div>
+        </div>
+      </div>
+
+    <div id="collapse{{key}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        {%for comment in commentlists[key][1:]|reverse%}
+        <p>{{comment}}</p><hr>{% endfor %}
+        <p>{{commentlists[key][0]}}</p>
+    </div>
+    </div>
+  </div>{% endfor %}
+
+    </div>
+
+
+{% endblock %}

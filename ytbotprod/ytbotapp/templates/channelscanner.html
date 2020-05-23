@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block heading %}
+YouTube Channel Scanner
+<a href="channelscanner/newscanner" class="btn btn-dark rounded-sm float-right" style="margin-left: 1em">New scanner</a>
+
+{% endblock %}
+{% block body %}
+
+
+
+
+    <div class="card-columns" style="margin-top: 25px;">
+        {%for scanner in scanners|reverse%}
+    
+            <div class="card shadow-sm border rounded-sm bg-light">
+                <div class="card-body">Scanning channel <a href="https://www.youtube.com/channel/{{scanner}}">{{scanners[scanner][2]}}</a> for updates and commenting using {{scanners[scanner][0]}} list and {{scanners[scanner][1]}} account.
+                    <a class="float-right btn btn-danger" href="/deletescanner/{{scanner}}" style="margin: 11px 0px;">Delete Scanner</a></div>
+            
+            </div>
+        {% endfor %}
+    </div>
+
+{%endblock%}

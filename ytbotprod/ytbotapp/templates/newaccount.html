@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block heading %}
+Add a new Account
+{%endblock%}
+
+{% block body%}
+
+<div class="card shadow-sm border rounded-sm bg-light" >
+                
+    <div class="card-body">
+                
+    <h4 class="card-title">Your authorziation url is <a href="{{auth_url}}">here</a>.</h4>
+    <p class="card-text text-muted">Open in new tab and paste the code below.</p>
+                <form action="/accounts/newaccount" method="POST"> 
+                    {{ form.csrf_token }}
+                    <div class="form-group"><label class="small mb-1" >{{form.accountname.label}}</label>{{form.accountname(class="form-control py-4", placeholder="New Account name. Can't be duplicate.")}}</div>
+                    <div class="form-group"><label class="small mb-1" >{{form.code.label}}</label>{{form.code(class="form-control py-4", placeholder="Auth Code")}}</div>
+                
+                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">{{form.submit(class="btn btn-dark")}}</div>
+                </form>
+    </div>
+</div>
+<div class="card-columns" style="margin-top: 25px;">
+    {% for acc in accountslist %}
+
+        <div class="card shadow-sm border rounded-sm bg-light">
+        <div class="card-body ">
+            <p class="card-text">{{acc}}<a href="delete/{{acc}}" class="float-right"><i class="fas fa-user-slash"></i>  Remove account</a></p>
+            
+        </div>
+        
+        </div>
+    {% endfor %}
+</div>
+    
+{% endblock %}
